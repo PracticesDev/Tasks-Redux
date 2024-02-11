@@ -5,7 +5,7 @@ import { TravelPage } from "../pages/TravelPage"
 export const TravelRoutes = () => {
   return (
     <Routes>
-        <Route path="/" element={ <TravelPage /> } />
+        <Route path="/travelapp" element={ <TravelPage /> } />
 
         <Route path="/*" element={ <Navigate to="/" /> } />
     </Routes>

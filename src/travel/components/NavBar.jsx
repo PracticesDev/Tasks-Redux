@@ -1,9 +1,12 @@
 
 import { Link as RouterLink } from 'react-router-dom';
 import { AppBar, Box, Toolbar, Typography, Button } from '@mui/material';
+import { logout } from '../../store/auth';
 
 
 export const NavBar = () => {
+
+
 
     return (
         <>
@@ -14,7 +17,9 @@ export const NavBar = () => {
                             Travel App
                         </Typography>
                         <RouterLink component={RouterLink} to="/auth/login">
-                            <Button variant="contained">Salir</Button>
+                            <Button 
+                            variant="contained"
+                            >Salir</Button>
                         </RouterLink>
                     </Toolbar>
                 </AppBar>
