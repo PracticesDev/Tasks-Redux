@@ -6,9 +6,6 @@ import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hook';
 import { checkingAuthenticated, startChekingGoogle } from '../../store/auth';
 import { validatorAuth } from '../validatorAuth';
-import { Link } from 'react-router-dom';
-import { TravelPage } from '../../travel/pages/TravelPage';
-//import { TravelRoutes } from '../../travel/routes/TravelRoutes';
 
 
 
@@ -30,7 +27,7 @@ export const LoginPage = () => {
     event.preventDefault();
 
     if (validatorAuth({ email, password })) {
-      navivegate("/travelapp")
+      navivegate("/taskapp")
       dispatch(checkingAuthenticated());
 
     } else {

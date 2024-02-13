@@ -1,7 +1,7 @@
 import { AppRouter } from './router/AppRouter';
 import { AppTheme } from './theme';
 
-export const TravelApp = () => {
+export const TaskApp = () => {
   return (
     <AppTheme>
         <AppRouter />

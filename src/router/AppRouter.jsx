@@ -1,17 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { AuthRoutes } from '../auth/routes/AuthRoutes';
-import { TravelRoutes } from '../travel/routes/TravelRoutes';
+import { TaskRoutes } from '../task/routes/TaskRoutes';
 
 
 export const AppRouter = () => {
   return (
     <Routes>
 
-        <Route path="/auth/*" element={ <AuthRoutes /> } />
+
+      <Route path="/auth/*" element={<AuthRoutes />} />
+      <Route path="/" element={<AuthRoutes />} />
 
 
-        <Route path="/*" element={ <TravelRoutes/> } />
+      <Route path="/*" element={<TaskRoutes />} />
 
     </Routes>
   )

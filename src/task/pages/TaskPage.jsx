@@ -1,7 +1,7 @@
 import { NavBar } from '../components';
 import { LayoutTravel } from '../layout/LayoutTravel';
 
-export const TravelPage = () => {
+export const TaskPage = () => {
 
   return (
     <>

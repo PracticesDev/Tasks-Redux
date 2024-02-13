@@ -5,6 +5,7 @@ export const validatorAuth = ({email,password}) => {
     const userData = {
         data: [
             {
+                id: '01',
                 email: "jorge@gmail.com",
                 password: "123456"
             },

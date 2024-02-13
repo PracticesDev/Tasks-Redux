@@ -5,8 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 import './styles.css';
-import { TravelApp } from './TravelApp';
-import store from './store/Store';
+import store from './store/store';
+import { TaskApp } from './TaskApp';
 
 
 
@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <TravelApp />
+        <TaskApp />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
