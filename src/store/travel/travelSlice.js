@@ -1,23 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+    id: new Date().getTime(),
+    nametask: '',
+    responsible: '',
+    priority: '',
+    progress: '',
+    created: false,
+}
+
+
 export const travelSlice = createSlice({
+
     name: 'travel',
-    initialState: {
-        isSaving: true,
-        messageSaved: '',
-        note: [],
-        active:null,
-        // active: {
-        //     id: 'ABC',
-        //     nameTask: '',
-        //     responsible: '',
-        //     taskinit: '',
-        //     taskfinish: '',
-        // }
-    },
+    initialState,
+
     reducers: {
 
-        createTask: (state, action) => {
+        createTask: ( state, action ) => {
+
+            const { nametask, responsible, priority, progress } = action.payload;
+            state.nametask = nametask;
+            state.responsible = responsible;
+            state.priority = priority;
+            state.progress = progress;
+            state.created = true;
 
         },
         readTaks: (state, action) => {
@@ -35,9 +42,4 @@ export const travelSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const {
-        createTask,
-        readTaks,
-        updataTask,
-        deleteTaks,
-    } = travelSlice.actions;
+export const { createTask, readTaks, updataTask, deleteTaks } = travelSlice.actions;

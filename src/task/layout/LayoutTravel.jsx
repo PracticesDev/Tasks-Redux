@@ -53,7 +53,7 @@ export const LayoutTravel = () => {
                         height: '500px',
                         padding: '50px',
                         borderRadius: '12px',
-                        backgroundColor: 'primary.main'
+                        backgroundColor: 'secondary.main'
                     }}>
 
 
