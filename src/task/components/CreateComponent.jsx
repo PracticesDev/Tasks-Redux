@@ -6,14 +6,12 @@ import AddIcon from '@mui/icons-material/Add';
 import { useForm } from '../../hook/useForm';
 import { createTask } from '../../store/travel/travelSlice';
 
+
 export const CreateComponent = () => {
-
-  // const task = useSelector((state) => state.task) => para leer lo que tenemos en el store
-  const task = useSelector((state) => state.task); 
-
+  
   const dispatch = useDispatch();
 
-  const { nametask, responsible, priority, progress, onInputChange } = useForm({
+  const { nametask, responsible, priority, progress, onInputChange, onResetForm } = useForm({
 
     id: new Date().getTime(),
     nametask: '',
@@ -28,15 +26,24 @@ export const CreateComponent = () => {
 
     event.preventDefault();
 
-    const newtask = {
+    const newTasks = {
+      id: new Date().getTime(),
       nametask,
       responsible,
       priority,
       progress
     }
 
-    console.log(newtask)
-    dispatch(createTask(newtask));
+    const saveData = localStorage.getItem("DATA");
+    const arrayDate = saveData ? JSON.parse(saveData) : [];
+
+    arrayDate.push(newTasks);
+
+    const datosJSON = JSON.stringify(arrayDate);
+    localStorage.setItem("DATA", datosJSON);
+
+    dispatch(createTask( newTasks ));
+    onResetForm();
 
   }
 
