@@ -5,12 +5,12 @@ const loadInitialState = () => {
     const savedState = localStorage.getItem('DATA');
     return savedState ? JSON.parse(savedState) : [
         {
-            id: new Date().getTime(),
-            nametask: '',
-            responsible: '',
-            priority: '',
-            progress: '',
-            created: false,
+            // id: '',
+            // nametask: '',
+            // responsible: '',
+            // priority: '',
+            // progress: '',
+            // created: false,
         }
     ];
 };
@@ -32,6 +32,7 @@ export const travelSlice = createSlice({
 
         createTask: (state, action) => {
             state.push(action.payload)
+            
         },
         readTaks: (state, action) => {
 
@@ -40,11 +41,18 @@ export const travelSlice = createSlice({
 
 
         },
-        updataTask: (state, action) => {
+        updateTask: (state, action) => {
 
+            //const taksUpdate = state.find(task => task.id === action)
+            const taksUpdate = action.payload;
+            console.log(taksUpdate)
         },
         deleteTaks: (state, action) => {
 
+            const taksDelete = state.find(task => task.id === action.payload)
+            if(taksDelete){
+                state.splice(state.indexOf(taksDelete),1)
+            }
         },
 
     }
@@ -54,4 +62,4 @@ export const travelSlice = createSlice({
 // Action creators are generated for each case reducer function
 export default travelSlice.reducer
 
-export const { createTask, readTaks, updataTask, deleteTaks } = travelSlice.actions;
+export const { createTask, readTaks, updateTask, deleteTaks } = travelSlice.actions;
