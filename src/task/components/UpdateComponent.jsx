@@ -1,35 +1,112 @@
-import React from 'react'
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
+
 import { useDispatch, useSelector } from 'react-redux'
-import { updateTask } from '../../store/travel/travelSlice';
+import { openModalTasks,updateModalTask } from '../../store/travel/travelSlice';
+import { useState } from 'react';
+import { useForm } from '../../hook/useForm';
 
 export const UpdateComponent = () => {
 
-  const updateSelector = useSelector((state) => state.travel)
+
   const dispatch = useDispatch();
+  const updateSelector = useSelector((state) => state.travel)
+  const [openModal, setOpenModal] = useState(false);
+  const { id, nametask, responsible, priority, progress, onInputChange, onResetForm, formState } = useForm({
+    id: new Date().getTime(),
+    nametask: '',
+    responsible: '',
+    priority: '',
+    progress: '',
+  });
 
 
-  const update = (id) => {
+  const openUpdateModal = (tasks) => {
+    dispatch(openModalTasks(tasks));
+    setOpenModal(true);
+  }
 
-    dispatch(updateTask(id))
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  }
 
+  const handleUpdateTask = () => {
+
+    dispatch(updateModalTask(formState));
+    
+    handleCloseModal();
   }
 
   return (
 
     <>
-      <h4>Actualizar Tarea</h4>
-      <ul>
+      <h2>Actualizar Tareas</h2>
+      <div>
         {
           updateSelector.map(tasks => (
             <div key={tasks.id}>
-              <h6>{tasks.id}</h6>
-              <button onClick={() => update(tasks.id)}>Actualizar</button>
+              {/* <h4 >Tarea: 1</h4> */}
+              <p>{tasks.nametask}</p>
+              <p>{tasks.responsible}</p>
+              <button onClick={() => openUpdateModal(tasks.id)}>Actualizar a</button>
             </div>
           ))
-
         }
-      </ul>
+      </div>
 
+      <div >
+        <Dialog open={openModal} onClose={handleCloseModal}>
+          <DialogTitle>Actualizar Tarea</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Nuevo nombre de tarea"
+              name='nametask'
+              value={nametask}
+              fullWidth
+
+              onChange={onInputChange}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Responsable de la tarea"
+              name='responsible'
+              value={responsible}
+              fullWidth
+
+              onChange={onInputChange}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Prioridad de la tarea"
+              name='priority'
+              value={priority}
+              fullWidth
+
+              onChange={onInputChange}
+            />
+
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Progreso de la tarea"
+              name='progress'
+              value={progress}
+              fullWidth
+
+              onChange={onInputChange}
+            />
+          </DialogContent>
+
+          <DialogActions>
+            <Button onClick={handleCloseModal}>Cancelar</Button>
+            <Button onClick={() => handleUpdateTask()}>Actualizar</Button>
+          </DialogActions>
+
+        </Dialog>
+      </div>
     </>
   )
 }
