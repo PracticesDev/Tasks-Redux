@@ -14,13 +14,13 @@ export const LayoutTravel = () => {
     const renderContent = () => {
         switch (value) {
             case 0:
-                return <CreateComponent/>;
+                return <CreateComponent />;
             case 1:
-                return <ReadComponent/>;
+                return <ReadComponent />;
             case 2:
-                return <UpdateComponent/>;
+                return <UpdateComponent />;
             case 3:
-                return <DeleteComponent/>;
+                return <DeleteComponent />;
             default:
                 return null;
         }
@@ -28,7 +28,7 @@ export const LayoutTravel = () => {
 
     return (
         <Card style={{ display: 'flex', flexDirection: 'vertical' }}>
-            <CardContent sx={{ backgroundColor: 'three.main', height: '535px', width: '360px', paddingTop: '150px' }}>
+            <CardContent sx={{ backgroundColor: 'three.main', height: '535px', width: '260px', paddingTop: '150px' }}>
                 <Tabs
                     value={value}
                     orientation="vertical"
@@ -55,8 +55,6 @@ export const LayoutTravel = () => {
                         borderRadius: '12px',
                         backgroundColor: 'secondary.main'
                     }}>
-
-
                     {renderContent()}
                 </CardContent>
 
