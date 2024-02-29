@@ -5,11 +5,13 @@ import AddIcon from '@mui/icons-material/Add';
 
 import { useForm } from '../../hook/useForm';
 import { createTask } from '../../store/travel/travelSlice';
+import { useEffect } from 'react';
 
 
 export const CreateComponent = () => {
   
   const dispatch = useDispatch();
+  const tasks = useSelector(state => state.travel);
 
   const { nametask, responsible, priority, progress, onInputChange, onResetForm } = useForm({
 
@@ -34,18 +36,22 @@ export const CreateComponent = () => {
       progress
     }
 
-    const saveData = localStorage.getItem("DATA");
-    const arrayDate = saveData ? JSON.parse(saveData) : [];
+    // const saveData = localStorage.getItem("DATA");
+    // const arrayDate = saveData ? JSON.parse(saveData) : [];
 
-    arrayDate.push(newTasks);
+    // arrayDate.push(newTasks);
 
-    const datosJSON = JSON.stringify(arrayDate);
-    localStorage.setItem("DATA", datosJSON);
+    // const datosJSON = JSON.stringify(arrayDate);
+    // localStorage.setItem("DATA", datosJSON);
 
     dispatch(createTask( newTasks ));
     onResetForm();
 
   }
+
+  useEffect(() => {
+    console.log('Estado actualizado:', tasks);
+  }, [tasks]);
 
 
   return (

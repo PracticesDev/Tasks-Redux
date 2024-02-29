@@ -2,17 +2,19 @@ import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } 
 
 import { useDispatch, useSelector } from 'react-redux'
 import { openModalTasks,updateModalTask } from '../../store/travel/travelSlice';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from '../../hook/useForm';
 
 export const UpdateComponent = () => {
 
 
   const dispatch = useDispatch();
-  const updateSelector = useSelector((state) => state.travel)
+  const  updateSelector = useSelector((state) => state.travel);
   const [openModal, setOpenModal] = useState(false);
+  const selectedTaskIdRef = useRef(null);
+
   const { id, nametask, responsible, priority, progress, onInputChange, onResetForm, formState } = useForm({
-    id: new Date().getTime(),
+    id:new Date().getTime(),
     nametask: '',
     responsible: '',
     priority: '',
@@ -20,19 +22,31 @@ export const UpdateComponent = () => {
   });
 
 
+
   const openUpdateModal = (tasks) => {
+    selectedTaskIdRef.current = tasks.id;
     dispatch(openModalTasks(tasks));
     setOpenModal(true);
   }
-
+  
   const handleCloseModal = () => {
     setOpenModal(false);
   }
-
+  
   const handleUpdateTask = () => {
+    const selectedTaskId = selectedTaskIdRef.current; // Accede al ID almacenado en la referencia mutable
+    console.log('ID del modal', selectedTaskId)
 
-    dispatch(updateModalTask(formState));
-    
+    const newtasks = {
+      id : selectedTaskId,
+      nametask,
+      responsible,
+      priority,
+      progress
+    }
+
+    dispatch(updateModalTask(newtasks)); 
+    onResetForm();
     handleCloseModal();
   }
 
@@ -47,7 +61,7 @@ export const UpdateComponent = () => {
               {/* <h4 >Tarea: 1</h4> */}
               <p>{tasks.nametask}</p>
               <p>{tasks.responsible}</p>
-              <button onClick={() => openUpdateModal(tasks.id)}>Actualizar a</button>
+              <button onClick={() => openUpdateModal(tasks)}>Actualizar</button>
             </div>
           ))
         }

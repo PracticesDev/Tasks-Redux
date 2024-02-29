@@ -1,58 +1,60 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// Función para cargar el estado inicial desde el almacenamiento local
-const loadInitialState = () => {
-    const savedState = localStorage.getItem('DATA');
-    return savedState ? JSON.parse(savedState) : [
-        {
-            // id: '',
-            // nametask: '',
-            // responsible: '',
-            // priority: '',
-            // progress: '',
-            // created: false,
-        }
-    ];
-};
-
-// Función para guardar el estado en el almacenamiento local
-const saveState = (state) => {
-    localStorage.setItem('DATA', JSON.stringify(state));
-};
-
-// Obtén el estado inicial desde el almacenamiento local
-const initialState = loadInitialState();
 
 export const travelSlice = createSlice({
 
     name: 'travel',
-    initialState,
+    initialState: [
+        {
+            id: new Date().getTime(),
+            nametask: '',
+            responsible: '',
+            priority: '',
+            progress: ''
 
+        }
+    ],
     reducers: {
 
         createTask: (state, action) => {
-            state.push(action.payload)
+
+            const newTask = action.payload;
+            state.push(newTask);
 
         },
         readTaks: (state, action) => {
 
             // const taskId = action.payload;
-            // const taskToShow = state.find(task => task.id === taskId);
-
-
+            // const taskToShow = state.find(task => task.id === taskId)
         },
-        openModalTasks: ( state, action ) => {
+        openModalTasks: (state, action) => {
+
             const openModal = action.payload;
-            console.log('ID del modal para actualizar:',openModal)
-
-        }, 
-        updateModalTask: (state, action) => {
-           
-            const updatedTask= action.payload;
-            console.log(updatedTask)
-
+            console.log('ID para actualizar:', openModal);
 
         },
+        updateModalTask: (state, action) => {
+
+            const updatedTask = action.payload;
+            console.log('El action.payload trae:', updatedTask);
+            
+            const updatedState = state.map(task => {
+                if (task.id === updatedTask.id) {
+                    return {
+                        ...task,
+                        nametask: updatedTask.nametask,
+                        responsible: updatedTask.responsible,
+                        priority: updatedTask.priority,
+                        progress: updatedTask.progress
+                    };
+                }
+                return task;
+            });
+            console.log("Estado actualizado:", updatedState);
+            return updatedState;
+
+        },
+
         deleteTaks: (state, action) => {
 
             const taksDelete = state.find(task => task.id === action.payload)
@@ -60,10 +62,9 @@ export const travelSlice = createSlice({
                 state.splice(state.indexOf(taksDelete), 1)
             }
         },
-
     }
 });
 
 export default travelSlice.reducer
 
-export const { createTask, readTaks, openModalTasks,updateModalTask, deleteTaks } = travelSlice.actions;
+export const { createTask, readTaks, openModalTasks, updateModalTask, deleteTaks } = travelSlice.actions;

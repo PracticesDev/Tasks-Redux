@@ -6,17 +6,14 @@ import { useForm } from '../../hook/useForm';
 export const ReadComponent = () => {
 
   const readSelector = useSelector((state) => state.travel);
-  const dispatch = useDispatch();
   const { search, onInputChange, onResetForm } = useForm({ search: '' })
 
-
+  
 
   const searchId = (event) => {
 
     event.preventDefault();
     console.log('ID buscado', search);
-
-
 
     onResetForm();
   };
@@ -29,12 +26,11 @@ export const ReadComponent = () => {
       <input type="number" placeholder='Buscar por ID' name='search' value={search} onChange={onInputChange} />
       <button onClick={searchId}>Buscar</button>
 
-      <h1>LISTADO DE TAREAS:</h1>
+      <h1>LISTADO DE TAREAS: { readSelector.length }</h1>
       <div style={{ maxHeight: '300px', overflowY: 'auto' }} >
         {
           readSelector.map(tasks => (
             <div key={tasks.id}>
-              <h5>Tarea: { } </h5>
               <li>{tasks.nametask}</li>
               <li>{tasks.responsible}</li>
               <li>{tasks.priority}</li>

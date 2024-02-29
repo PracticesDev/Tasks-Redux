@@ -9,23 +9,12 @@ export const DeleteComponent = () => {
 
   const deleteTask = (id) => {
 
-
     dispatch(deleteTaks(id));
-
-    //console.log(deleteTask)
-
-
 
   }
 
-
-
   return (
     <>
-      {/* <label>Buscar Tarea: </label>
-      <input type="number" placeholder='Buscar por ID' name='search' value={search} onChange={onInputChange} />
-      <button onClick={searchId}>Buscar</button> */}
-
       <h3>Eliminar Tareas </h3>
       <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
         {
