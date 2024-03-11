@@ -1,19 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// const loadInitialState = () => {
+//     const storedState = localStorage.getItem('travelState');
+//     return storedState ? JSON.parse(storedState) : [{
+//       id: 'null',
+//       nametask: 'null',
+//       responsible: 'null',
+//       priority: 'null',
+//       progress: 'null'
+//     }];
+//   };
 
 export const travelSlice = createSlice({
 
     name: 'travel',
     initialState: [
+        //loadInitialState
         {
-            id: new Date().getTime(),
-            nametask: '',
-            responsible: '',
-            priority: '',
-            progress: ''
+            id: null,
+            nametask: null,
+            responsible: null,
+            priority: null,
+            progress:null,
 
-        }
-    ],
+        }],
+
     reducers: {
 
         createTask: (state, action) => {
@@ -37,7 +48,7 @@ export const travelSlice = createSlice({
 
             const updatedTask = action.payload;
             console.log('El action.payload trae:', updatedTask);
-            
+
             const updatedState = state.map(task => {
                 if (task.id === updatedTask.id) {
                     return {

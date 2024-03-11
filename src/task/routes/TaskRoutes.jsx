@@ -5,9 +5,9 @@ import { TaskPage } from "../pages/TaskPage"
 export const TaskRoutes = () => {
   return (
     <Routes>
-        <Route path="/taskapp" element={ <TaskPage /> } />
+      <Route path="/taskapp" element={<TaskPage />} />
 
-        <Route path="/*" element={ <Navigate to="/" /> } />
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   )
 }

@@ -7,14 +7,10 @@ import { TaskRoutes } from '../task/routes/TaskRoutes';
 export const AppRouter = () => {
   return (
     <Routes>
-
-
       <Route path="/auth/*" element={<AuthRoutes />} />
       <Route path="/" element={<AuthRoutes />} />
-
-
+      
       <Route path="/*" element={<TaskRoutes />} />
-
     </Routes>
   )
 }

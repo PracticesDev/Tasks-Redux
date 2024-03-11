@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 
 export const CreateComponent = () => {
-  
+
   const dispatch = useDispatch();
   const tasks = useSelector(state => state.travel);
 
@@ -36,21 +36,21 @@ export const CreateComponent = () => {
       progress
     }
 
-    // const saveData = localStorage.getItem("DATA");
-    // const arrayDate = saveData ? JSON.parse(saveData) : [];
+    // const saveData = localStorage.getItem("travelState");
+    // const arrayDate = saveData ? JSON.stringify(saveData) : [];
 
     // arrayDate.push(newTasks);
 
     // const datosJSON = JSON.stringify(arrayDate);
-    // localStorage.setItem("DATA", datosJSON);
+    // localStorage.setItem("travelState", datosJSON);
 
-    dispatch(createTask( newTasks ));
+    dispatch(createTask(newTasks));
     onResetForm();
 
   }
 
   useEffect(() => {
-    console.log('Estado actualizado:', tasks);
+    //console.log('Estado actualizado:', tasks);
   }, [tasks]);
 
 
@@ -76,7 +76,7 @@ export const CreateComponent = () => {
 
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
-              label="Resposanble"
+              label="Responsable"
               type="text"
               placeholder='Quien realizara la tarea'
               name='responsible'
@@ -99,7 +99,7 @@ export const CreateComponent = () => {
           <Grid color={'black'} item xs={12} sx={{ mt: 2 }}>
             <TextField
               label="Progreso"
-              type="text"
+              type="number"
               placeholder='Progreso de la tarea'
               name='progress'
               value={progress}
