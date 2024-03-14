@@ -1,4 +1,4 @@
-import { Typography, Grid, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
+import { Typography , Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTaks } from '../../store/travel/travelSlice';
@@ -12,6 +12,7 @@ export const DeleteComponent = () => {
   const deleteTask = (id) => {
 
     dispatch(deleteTaks(id));
+    
 
   }
 
