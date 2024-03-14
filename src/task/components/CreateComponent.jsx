@@ -36,13 +36,12 @@ export const CreateComponent = () => {
       progress
     }
 
-    // const saveData = localStorage.getItem("travelState");
-    // const arrayDate = saveData ? JSON.stringify(saveData) : [];
+    const saveData = localStorage.getItem("travel");
+    const arrayDate = saveData ? JSON.parse(saveData) : [];
 
-    // arrayDate.push(newTasks);
+    arrayDate.push(newTasks);
 
-    // const datosJSON = JSON.stringify(arrayDate);
-    // localStorage.setItem("travelState", datosJSON);
+    localStorage.setItem("travel", JSON.stringify(arrayDate));
 
     dispatch(createTask(newTasks));
     onResetForm();

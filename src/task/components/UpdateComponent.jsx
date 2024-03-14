@@ -103,7 +103,6 @@ export const UpdateComponent = () => {
               />
               <TextField
                 autoFocus
-                type="number"
                 margin="dense"
                 label="Prioridad de la tarea"
                 name='priority'
@@ -115,6 +114,7 @@ export const UpdateComponent = () => {
               <TextField
                 autoFocus
                 margin="dense"
+                type='number'
                 label="Progreso de la tarea"
                 name='progress'
                 value={progress}

@@ -1,14 +1,28 @@
-import { CssBaseline, Typography, Box, Container } from '@mui/material'
+import { Typography, Container } from '@mui/material'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from '../../hook/useForm';
+import { useEffect } from 'react';
+import { readingTask } from '../../store/travel/thunks';
+import { readTaks } from '../../store/travel/travelSlice';
+//import { useForm } from '../../hook/useForm';
 
 
 
 export const ReadComponent = () => {
 
+  const dispatch = useDispatch();
   const readSelector = useSelector((state) => state.travel);
-  const { search, onInputChange, onResetForm } = useForm({ search: '' })
+
+  
+
+
+  useEffect(() => {
+
+    dispatch(readingTask());
+
+  }, [dispatch]);
+
+  // const { search, onInputChange, onResetForm } = useForm({ search: '' })
 
 
 
@@ -20,6 +34,13 @@ export const ReadComponent = () => {
   //   onResetForm();
   // };
 
+  const algo = (tasks) => {
+
+
+    const aa = dispatch(readingTask(tasks))
+    console.log("esto es mas",aa);
+
+  }
 
 
   return (
@@ -30,9 +51,12 @@ export const ReadComponent = () => {
 
       <Typography variant="h6" color='#005B41' margin='15px' >
         Lista de Tareas
-      </Typography>
+      </Typography> 
+
+
+
       {/* bgcolor: '#ADBC9F' */}
-      <Container sx={{  width: '560px' }} style={{ maxHeight: '300px', overflowY: 'auto' }}>
+      <Container sx={{ width: '560px' }} style={{ maxHeight: '300px', overflowY: 'auto' }}>
         <div >
           {
             readSelector.map(tasks => (
@@ -47,6 +71,7 @@ export const ReadComponent = () => {
             ))
           }
         </div>
+        <button onClick={() => algo()}>sadoas</button>
       </Container>
     </>
   )

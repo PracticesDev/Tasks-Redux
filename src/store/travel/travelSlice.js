@@ -1,28 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const loadInitialState = () => {
-//     const storedState = localStorage.getItem('travelState');
-//     return storedState ? JSON.parse(storedState) : [{
-//       id: 'null',
-//       nametask: 'null',
-//       responsible: 'null',
-//       priority: 'null',
-//       progress: 'null'
-//     }];
-//   };
+
+const getLocalStorageState = () => {
+    const localState = localStorage.getItem('travel');
+    return localState ? JSON.parse(localState) : initialState;
+};
 
 export const travelSlice = createSlice({
 
     name: 'travel',
-    initialState: [
-        //loadInitialState
-        {
-            id: null,
-            nametask: null,
-            responsible: null,
-            priority: null,
-            progress:null,
-
+    initialState:
+        [{
+            id: new Date().getTime(),
+            nametask: '',
+            responsible: '',
+            priority: '',
+            progress: '',
         }],
 
     reducers: {
@@ -35,8 +28,10 @@ export const travelSlice = createSlice({
         },
         readTaks: (state, action) => {
 
-            // const taskId = action.payload;
-            // const taskToShow = state.find(task => task.id === taskId)
+            const leerTask = action.payload;
+            console.log("aca tengo mi data",leerTask)
+
+
         },
         openModalTasks: (state, action) => {
 
