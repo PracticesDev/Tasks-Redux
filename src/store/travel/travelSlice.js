@@ -18,17 +18,7 @@ const getLocalStorageState = () => {
 export const travelSlice = createSlice({
 
     name: 'travel',
-    initialState: 
-    // [{
-    //     id: new Date().getTime(),
-    //     nametask: '',
-    //     responsible: '',
-    //     priority: '',
-    //     progress: '',
-    // }],
-    
-    
-    getLocalStorageState(),
+    initialState: getLocalStorageState(),
 
     reducers: {
 
@@ -42,7 +32,6 @@ export const travelSlice = createSlice({
 
             const leerTask = action.payload;
             //console.log("Data", leerTask)
-
 
         },
         openModalTasks: (state, action) => {
@@ -75,11 +64,10 @@ export const travelSlice = createSlice({
 
         deleteTaks: (state, action) => {
 
-            // const taksDelete = state.find(task => task.id === action.payload)
-            // if (taksDelete) {
-            //     state.splice(state.indexOf(taksDelete), 1)
-            // }
-            // localStorage.setItem('travel', JSON.stringify(state.tasks));
+            const taksDelete = state.find(task => task.id === action.payload)
+            if (taksDelete) {
+                state.splice(state.indexOf(taksDelete), 1)
+            }
         },
     }
 });

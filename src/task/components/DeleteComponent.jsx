@@ -1,7 +1,7 @@
-import { Typography , Button } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTaks } from '../../store/travel/travelSlice';
+import { deleteTaks } from '../../store/travel';
 
 export const DeleteComponent = () => {
 
@@ -11,9 +11,22 @@ export const DeleteComponent = () => {
 
   const deleteTask = (id) => {
 
-    dispatch(deleteTaks(id));
-    
-
+    const saveData = localStorage.getItem("travel");
+    const arrayDate = saveData ? JSON.parse(saveData) : [];
+  
+    const existingTaskIndex = arrayDate.findIndex(task => task.id === id);
+  
+    if (existingTaskIndex !== -1) {
+      
+      arrayDate.splice(existingTaskIndex, 1);
+  
+      localStorage.setItem("travel", JSON.stringify(arrayDate));
+      
+      dispatch(deleteTaks(id));
+    } else {
+      console.log('No se encontró ID');
+    }
+  
   }
 
   return (
