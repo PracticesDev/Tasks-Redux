@@ -14,7 +14,7 @@ export const NavBar = () => {
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Travel App
+                            Tasks App
                         </Typography>
                         <RouterLink component={RouterLink} to="/auth/login">
                             <Button 
